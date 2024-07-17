@@ -19,10 +19,22 @@ public class StudentService {
     }
 
 
+
     public List<Student> getAllStudents() {
+
         return students;
     }
 
+    public void addStudent(Student student){
+        students.add(student);
+
     }
+    public void deleteStudent(Long id){
+        students.removeIf(student -> student.getId().equals(id));
+    }
+    public void deleteAll(){
+        students.clear();
+    }
+}
 
 
