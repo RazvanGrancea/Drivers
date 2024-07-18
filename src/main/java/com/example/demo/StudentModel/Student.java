@@ -1,4 +1,5 @@
 package com.example.demo.StudentModel;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
@@ -7,7 +8,7 @@ import lombok.Data;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Student{
+public class Student {
     private Long id;
     private String name;
     private double grade;

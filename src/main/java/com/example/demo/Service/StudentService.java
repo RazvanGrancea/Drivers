@@ -1,16 +1,18 @@
 package com.example.demo.Service;
+
 import com.example.demo.StudentModel.Student;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 
 @Service
 public class StudentService {
     private List<Student> students = new ArrayList<>();
-    public StudentService(){
+
+    public StudentService() {
         students.add(new Student(1L, "Tudor", 9.80));
         students.add(new Student(2L, "Visan", 9.60));
         students.add(new Student(3L, "Grancea", 9.45));
@@ -19,30 +21,31 @@ public class StudentService {
     }
 
 
-
     public List<Student> getAllStudents() {
 
         return students;
     }
 
-    public Student getStudentById(Long id) {
+    public Optional<Student> getStudentById(Long id) {
         for (Student student : students) {
             if (student.getId().equals(id)) {
-                return student;
+                return Optional.of(student);
             }
         }
 
-        return null;
+        return Optional.empty();
     }
-    public void addStudent(Student student){
+
+    public void addStudent(Student student) {
         students.add(student);
 
     }
 
-    public void deleteStudent(Long id){
+    public void deleteStudent(Long id) {
         students.removeIf(student -> student.getId().equals(id));
     }
-    public void deleteAll(){
+
+    public void deleteAll() {
         students.clear();
     }
 }
