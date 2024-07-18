@@ -3,6 +3,8 @@ package com.example.demo.Service;
 import ch.qos.logback.core.pattern.parser.OptionTokenizer;
 import com.example.demo.StudentModel.Student;
 import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +45,10 @@ public class StudentService {
 
     }
 
-    public ResponseEntity<Student> deleteStudent(@PathVariable Long id) {
-        Optional<Student> studentOptional = studentService.deleteStudent(id);
-        return studentOptional
-                .map(student -> ResponseEntity.ok(student))
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    public Optional<Student> deleteStudent(Long id) {
+        Optional<Student> studentOpt = getStudentById(id);
+        studentOpt.ifPresent(students::remove);
+        return studentOpt;
     }
 
     public void deleteAll() {
