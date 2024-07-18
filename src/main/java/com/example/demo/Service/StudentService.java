@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 
+import ch.qos.logback.core.pattern.parser.OptionTokenizer;
 import com.example.demo.StudentModel.Student;
 import org.springframework.stereotype.Service;
 
@@ -36,13 +37,17 @@ public class StudentService {
         return Optional.empty();
     }
 
-    public void addStudent(Student student) {
+    public Student addStudent(Student student) {
         students.add(student);
+        return student;
 
     }
 
-    public void deleteStudent(Long id) {
-        students.removeIf(student -> student.getId().equals(id));
+    public ResponseEntity<Student> deleteStudent(@PathVariable Long id) {
+        Optional<Student> studentOptional = studentService.deleteStudent(id);
+        return studentOptional
+                .map(student -> ResponseEntity.ok(student))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
     public void deleteAll() {
