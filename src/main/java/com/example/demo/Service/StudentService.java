@@ -25,10 +25,20 @@ public class StudentService {
         return students;
     }
 
+    public Student getStudentById(Long id) {
+        for (Student student : students) {
+            if (student.getId().equals(id)) {
+                return student;
+            }
+        }
+
+        return null;
+    }
     public void addStudent(Student student){
         students.add(student);
 
     }
+
     public void deleteStudent(Long id){
         students.removeIf(student -> student.getId().equals(id));
     }
