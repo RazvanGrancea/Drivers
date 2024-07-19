@@ -35,7 +35,7 @@ public class StudentServiceTest {
         assertThat(actual, equalTo(expected));
 
         final Optional<Student> retrieve = studentService.getStudentById(expected.getId());
-        assertThat(retrieve.isPresent(), equalTo(false));
+        assertThat(retrieve.isPresent(), equalTo(true));
         assertThat(retrieve.get(), equalTo(expected));
     }
 
