@@ -33,6 +33,9 @@ jobs:
       - name: Check code style
         run: mvn spotless:check
 
+      - name: Check pmd
+        run: mvn pmd:check
+
       - name: Build with Maven
         run: mvn clean compile
 

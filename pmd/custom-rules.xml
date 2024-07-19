@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         name="Android Application Rules"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd">
+
+    <description>The PMD Custom rules</description>
+
+    <rule name="MissingEntityDefaultConstructor"
+          language="java"
+          message="Missing Entity Default Construct! Please declare a no args constructor!"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            The Entity annotated class does not have a default constructor. Please declare a no-args constructor!
+        </description>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+//TypeDeclaration[Annotation/MarkerAnnotation/Name[@Image='Entity']]
+//ClassOrInterfaceBody[count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration
+[@Public='true']
+[not(FormalParameters/*)]
+[not(NameList)]
+[count(ExplicitConstructorInvocation/Arguments/ArgumentList/Expression)=0])=0]
+]]>
+                    //ClassOrInterfaceBodyDeclaration/ConstructorDeclaration/FormalParameters[@Size>0]
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+
+    <rule name="AutowiredNoFieldInjection"
+          language="java"
+          message="No Field Injection Allowed! Use Constructor Injection."
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            Field Injection of @Autowired is not allowed. Use constructor injection instead.
+        </description>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+//Annotation
+  [pmd-java:typeIs('org.springframework.beans.factory.annotation.Autowired')]
+  [../FieldDeclaration]
+]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+    <rule name="NoExplicitLoggerField"
+          language="java"
+          message="You should not use explicit Logger field. Use Lombok @Sl4fj annotation"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            You should not use explicit Logger provided by a call to Logger.getFactory(class).
+            Use Lombok @Sl4fj annotation
+        </description>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+//FieldDeclaration/Type/ReferenceType/ClassOrInterfaceType[@Image='Logger']
+]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+</ruleset>
