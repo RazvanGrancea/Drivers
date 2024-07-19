@@ -1,7 +1,7 @@
-package com.example.demo.Controller;
+package com.example.demo.controller;
 
-import com.example.demo.Service.StudentService;
-import com.example.demo.StudentModel.Student;
+import com.example.demo.service.StudentService;
+import com.example.demo.model.Student;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.Optional;
