@@ -35,3 +35,9 @@ jobs:
 
       - name: Run tests with Maven
         run: mvn test
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: target/surefire-reports
