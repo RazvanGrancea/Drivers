@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.StudentService;
 import com.example.demo.model.Student;
+import com.example.demo.service.StudentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/students")
 public class StudentController {
 
-  @Autowired private StudentService studentService;
+  private final StudentService studentService;
+
+  @Autowired
+  public StudentController(final StudentService studentService) {
+    this.studentService = studentService;
+  }
 
   @GetMapping
   @Tag(name = "List")
