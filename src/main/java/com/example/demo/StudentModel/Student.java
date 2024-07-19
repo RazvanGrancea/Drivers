@@ -1,14 +1,14 @@
 package com.example.demo.StudentModel;
+
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class Student{
-    private Long id;
-    private String name;
-    private double grade;
+public class Student {
+  private Long id;
+  private String name;
+  private double grade;
 }
