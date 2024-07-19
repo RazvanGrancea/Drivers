@@ -31,6 +31,7 @@
         <java.version>17</java.version>
         <spotless.version>2.43.0</spotless.version>
         <swagger.version>2.6.0</swagger.version>
+        <surefire-plugin.version>3.3.0</surefire-plugin.version>
     </properties>
 
     <dependencies>
@@ -62,6 +63,15 @@
 
     <build>
         <plugins>
+
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>${surefire-plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    <reportFormat>html</reportFormat>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
